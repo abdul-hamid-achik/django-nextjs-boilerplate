@@ -5,17 +5,5 @@ __pycache__
 .DS_Store
 .task
 .secrets
-
-static
-    css
-    js
-    img
-    fonts
-    admin
-    django_extensions
-    guardian
-    rest_framework
-    polymorphic
-    staticfiles.json
-
+static/**/*
 .env

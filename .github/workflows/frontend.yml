@@ -3,7 +3,7 @@ name: Frontend Compliance CI
 on:
   push:
     paths:
-      - 'web/**'
+      - 'frontend/**'
       - '.github/**'
 
 defaults:
