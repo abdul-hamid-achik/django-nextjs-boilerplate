@@ -1,10 +1,10 @@
-import NextAuth, {Session, User, SessionStrategy} from "next-auth";
+import NextAuth, {Session, SessionStrategy, User} from "next-auth";
 import jwtDecode from "jwt-decode";
 import CredentialsProvider from "next-auth/providers/credentials";
 // @ts-ignore
 import {AuthApi, Configuration, TokenRefresh} from '@/client';
 
-const authApi = new AuthApi(new Configuration({basePath: process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}));
+const authApi = new AuthApi(new Configuration({basePath: process.env.BACKEND_URL}));
 
 interface CustomSession extends Session {
     access?: string;
@@ -18,14 +18,15 @@ interface Token {
     user?: User;
     exp?: number;
 }
+
 async function refreshAccessToken(token: Token) {
-        const {data} = await authApi.createTokenRefresh(token?.refresh as unknown as TokenRefresh);
-        const {exp}: Token = jwtDecode(data.access as string);
-        return {
-            ...token,
-            ...data,
-            exp,
-        };
+    const response = await authApi.createTokenRefresh({"refresh": token.refresh});
+    return {
+        ...token,
+        ...response?.data,
+        // @ts-ignore
+        ...jwtDecode(response.data?.access as string)
+    };
 }
 
 // For more information on each option (and a full list of options) go to
@@ -60,8 +61,7 @@ export const authOptions = {
                         id: user_id,
                     };
                 } catch (error) {
-                    console.warn(error);
-                    return null;
+                    return console.error(error.message);
                 }
             },
         }),
@@ -95,9 +95,10 @@ export const authOptions = {
         },
         async session({
                           session,
-                          token
+                          token,
+                          user
                       }: { session: CustomSession, user: User, token: Token }) {
-            session.user = token.user;
+            session.user = user;
             session.access = token.access;
             session.refresh = token.refresh;
             session.exp = token.exp;

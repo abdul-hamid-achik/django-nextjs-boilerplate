@@ -43,7 +43,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@database:5432/postgres
       NODE_ENV: development
-      NEXT_PUBLIC_BACKEND_BASE_PATH: http://localhost:8080
+      BACKEND_URL: http://backend:8080
       NEXTAUTH_URL: http://localhost:3000
       NO_SECRET: secret
     ports:
