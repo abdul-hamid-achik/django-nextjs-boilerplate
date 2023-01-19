@@ -1,0 +1,40 @@
+name: Frontend Compliance CI
+
+on:
+  push:
+    paths:
+      - 'web/**'
+      - '.github/**'
+
+defaults:
+  run:
+    shell: bash
+    working-directory: web
+
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup_node
+        with:
+          env: 'dev'
+      - run: |
+          npm ci
+          npm run lint
+
+  test:
+    needs: linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup_node
+        with:
+          env: 'dev'
+
+      - name: Run Tests
+        run: |
+          npm ci
+          npm test

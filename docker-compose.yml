@@ -1,0 +1,71 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    entrypoint: ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 250M
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@database:5432/postgres
+      DEBUG: True
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend:/backend
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      database:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
+        reservations:
+          cpus: '0.25'
+          memory: 250M
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@database:5432/postgres
+      NODE_ENV: development
+      NEXT_PUBLIC_API_BASE_PATH: http://backend:8080
+      NEXTAUTH_URL: http://frontend:3000
+      NO_SECRET: secret
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_database: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:

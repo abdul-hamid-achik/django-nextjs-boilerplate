@@ -1,0 +1,5 @@
+.venv
+static/*
+__pycache__
+requirements.txt
+.pdm.toml

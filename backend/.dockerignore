@@ -1,0 +1,12 @@
+.venv
+static
+**/conftest.py
+.pdm.toml
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/__pycache__
+**/.mypy_cache
+**/.pytest_cache
+**/.coverage
+**/.cache
