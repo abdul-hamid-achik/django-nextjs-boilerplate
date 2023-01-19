@@ -17,7 +17,6 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, True),
@@ -33,7 +32,6 @@ env = environ.Env(
     BASE_URL=(str, "http://localhost:8000"),
     PUBLIC_URL=(str, "http://localhost:3000"),
 )
-
 
 STATIC_HOST = env("STATIC_HOST")
 STATIC_URL = STATIC_HOST + "/static/"
@@ -82,9 +80,7 @@ MIDDLEWARE = [
     "django_userforeignkey.middleware.UserForeignKeyMiddleware",
 ]
 
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-)
+AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 ROOT_URLCONF = "api.urls"
 
@@ -163,4 +159,3 @@ REST_FRAMEWORK = {  # Use Django's standard `django.contrib.auth` permissions,
     "PAGE_SIZE": 12,
 }
 APPEND_SLASH = True
-

@@ -29,4 +29,4 @@ COPY . /backend
 WORKDIR /backend
 
 # set entrypoint
-ENTRYPOINT ["python", "-m", "gunicorn", "--bind", "0.0.0.0:8080", "api.wsgi:application"]
+CMD ["python", "-m", "gunicorn", "--bind", "0.0.0.0:8080", "api.wsgi:application"]

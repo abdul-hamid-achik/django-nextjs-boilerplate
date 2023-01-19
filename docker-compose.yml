@@ -3,7 +3,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    entrypoint: ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8080"]
     deploy:
       resources:
         limits:
@@ -43,8 +43,8 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@database:5432/postgres
       NODE_ENV: development
-      NEXT_PUBLIC_API_BASE_PATH: http://backend:8080
-      NEXTAUTH_URL: http://frontend:3000
+      NEXT_PUBLIC_BACKEND_BASE_PATH: http://localhost:8080
+      NEXTAUTH_URL: http://localhost:3000
       NO_SECRET: secret
     ports:
       - 3000:3000

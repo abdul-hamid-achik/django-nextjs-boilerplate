@@ -1,9 +1,10 @@
 import NextAuth, {Session, User, SessionStrategy} from "next-auth";
 import jwtDecode from "jwt-decode";
 import CredentialsProvider from "next-auth/providers/credentials";
+// @ts-ignore
 import {AuthApi, Configuration, TokenRefresh} from '@/client';
 
-const authApi = new AuthApi(new Configuration({basePath: process.env.NEXT_PUBLIC_API_BASE_PATH}));
+const authApi = new AuthApi(new Configuration({basePath: process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}));
 
 interface CustomSession extends Session {
     access?: string;
@@ -49,7 +50,8 @@ export const authOptions = {
 
             async authorize(credentials) {
                 try {
-                    const {data} = await authApi.createTokenObtainPair(credentials);
+                    const response = await authApi.createTokenObtainPair(credentials);
+                    const {data} = response
                     const token: Token = data as unknown as Token;
                     const {user_id}: any =
                         jwtDecode(token?.access as string);
@@ -58,6 +60,7 @@ export const authOptions = {
                         id: user_id,
                     };
                 } catch (error) {
+                    console.warn(error);
                     return null;
                 }
             },
