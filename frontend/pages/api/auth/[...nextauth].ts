@@ -61,7 +61,8 @@ export const authOptions = {
                         id: user_id,
                     };
                 } catch (error) {
-                    return console.error(error.message);
+                    console.error(error.message);
+                    return null;
                 }
             },
         }),
