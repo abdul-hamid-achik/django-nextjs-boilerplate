@@ -83,3 +83,15 @@ tasks:
     cmds:
       - docker compose run backend python manage.py createsuperuser --username=admin --email=admin@example.com --noinput
       - docker compose run backend python manage.py changepassword admin
+
+  migrate:
+    desc: Runs migrations
+    dir: backend
+    cmds:
+      - docker compose run backend python manage.py migrate
+
+  test:
+        desc: Runs tests
+        cmds:
+            - cd backend && pdm test
+            - cd frontend && npm test

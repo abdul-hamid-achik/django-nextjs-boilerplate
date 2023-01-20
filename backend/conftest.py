@@ -3,6 +3,8 @@ from model_bakery import baker
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import AccessToken
 
+pytestmark = pytest.mark.django_db
+
 
 @pytest.fixture()
 def api_client():
