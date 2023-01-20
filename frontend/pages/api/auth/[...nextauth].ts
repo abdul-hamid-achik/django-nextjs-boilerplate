@@ -1,10 +1,9 @@
 import NextAuth, {Session, SessionStrategy, User} from "next-auth";
 import jwtDecode from "jwt-decode";
 import CredentialsProvider from "next-auth/providers/credentials";
-// @ts-ignore
-import {AuthApi, Configuration, TokenRefresh} from '@/client';
+import {Configuration, IdentityApi,} from '../../../client';
 
-const authApi = new AuthApi(new Configuration({basePath: process.env.BACKEND_URL}));
+const identityApi = new IdentityApi(new Configuration({basePath: process.env.BACKEND_URL}));
 
 interface CustomSession extends Session {
     access?: string;
@@ -20,7 +19,7 @@ interface Token {
 }
 
 async function refreshAccessToken(token: Token) {
-    const response = await authApi.createTokenRefresh({"refresh": token.refresh});
+    const response = await identityApi.createTokenRefresh({"refresh": token.refresh});
     return {
         ...token,
         ...response?.data,
@@ -33,6 +32,10 @@ async function refreshAccessToken(token: Token) {
 // https://next-auth.js.org/configuration/options
 export const authOptions = {
     // https://next-auth.js.org/configuration/providers/oauth
+    pages: {
+        signup: "/signup",
+        signin: '/signin',
+    },
     providers: [
         CredentialsProvider({
             // The name to display on the sign-in form (e.g. 'Sign in with...')
@@ -51,7 +54,7 @@ export const authOptions = {
 
             async authorize(credentials) {
                 try {
-                    const response = await authApi.createTokenObtainPair(credentials);
+                    const response = await identityApi.createTokenObtainPair(credentials);
                     const {data} = response
                     const token: Token = data as unknown as Token;
                     const {user_id}: any =
@@ -67,9 +70,6 @@ export const authOptions = {
             },
         }),
     ],
-    theme: {
-        colorScheme: "dark",
-    },
     callbacks: {
         async redirect({url, baseUrl}: { url: string; baseUrl: string }) {
             return url.startsWith(baseUrl)

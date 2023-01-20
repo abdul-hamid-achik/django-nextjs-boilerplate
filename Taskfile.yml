@@ -1,7 +1,7 @@
 version: '3'
 
 tasks:
-  docker.start:
+  open.docker:
     desc: Starts Docker engine locally
     cmds:
       - open -a Docker
@@ -47,17 +47,17 @@ tasks:
       - task: compose.logs
 
   start:
-    desc: Starts all services in docker-compose.yml
+    desc: Builds containers and Starts project
     summary: |
-      Starts all services in docker-compose.yml, including backend and frontend.
-      This is the same as running `docker compose up -d`
+      Builds containers and Starts project, if you want to start the project
+      without building the containers use the task `dev`
     deps: [ compose.build, compose.up ]
     cmds:
       - task: logs
 
   dev:
-    desc: Starts database in docker-compose.yml
-    deps: [ compose.build, compose.dev ]
+    desc: Starts project without building it first hoping that it is already built
+    deps: [ compose.up ]
     cmds:
       - task: logs
 
@@ -81,43 +81,85 @@ tasks:
     desc: Seeds the database
     dir: backend
     cmds:
-      - docker compose run backend python manage.py createsuperuser --username=admin --email=admin@example.com --noinput
-      - docker compose run backend python manage.py changepassword admin
+      - docker compose run --rm backend python manage.py createsuperuser --username=admin --email=admin@example.com --noinput
+      - docker compose run --rm backend python manage.py changepassword admin
 
   migrate:
     desc: Runs migrations
     dir: backend
     cmds:
-      - docker compose run backend python manage.py migrate
+      - docker compose run --rm backend python manage.py migrate
+
+  test.frontend:
+    desc: Runs frontend tests
+    dir: frontend
+    cmds:
+      - npm test
+
+  test.backend:
+    desc: Runs backend tests
+    dir: backend
+    cmds:
+      - pdm test
 
   test:
     desc: Runs tests
     cmds:
-      - cd backend && pdm test
-      - cd frontend && npm test
+      - task: test.frontend
+      - task: test.backend
 
-  generate-api-client:
-    deps: [compose.up]
-    desc: Generates client code for typesafe communication with backend
-    aliases:
-      - client
-    summary:
-        Generates client code for typesafe communication with backend.
-        This is the same as running `docker compose run frontend npm run generate-client`
-        but it is much faster because it doesn't have to use docker the frontend image.
+  format.frontend:
+    desc: Formats the api client
     dir: frontend
     cmds:
-      - npm run generate-api-client
+      - npm run format
+
+  format.backend:
+    desc: Formats the backend
+    dir: backend
+    cmds:
+      - pdm run format
 
   format:
     desc: Formats all code
     cmds:
-      - cd backend && pdm run format
-      - cd frontend && npm run format
+      - task: format.frontend
+      - task: format.backend
 
+
+  lint.frontend:
+    desc: Lints the frontend
+    dir: frontend
+    cmds:
+      - npm run lint
+
+  lint.backend:
+    desc: Lints the backend
+    dir: backend
+    cmds:
+      - pdm run lint
 
   lint:
     desc: Lints all code
     cmds:
-      - cd backend && pdm run lint
-      - cd frontend && npm run lint
+      - task: lint.frontend
+      - task: lint.backend
+
+  generate-api-client:
+    deps: [ compose.up ]
+    desc: Generates client code for typesafe communication with backend
+    aliases:
+      - client
+    summary:
+      Generates client code for typesafe communication with backend.
+      This is the same as running `docker compose run --rm frontend npm run generate-client`
+      but it is much faster because it doesn't have to use docker the frontend image.
+    dir: frontend
+    cmds:
+      - npm run generate-api-client
+
+  routes:
+    desc: Shows all routes
+    dir: backend
+    cmds:
+      - docker compose run --rm backend python manage.py show_urls

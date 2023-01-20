@@ -1,11 +1,14 @@
-import { render, screen } from "@testing-library/react"
+import {render, screen} from "@testing-library/react"
 import Home from "../pages"
-import "@testing-library/jest-dom"
 
-describe("Landing page", () => {
-  it("renders title", () => {
-    render(<Home />)
-    const title = screen.getByText("Project Template")
-    expect(title).toBeInTheDocument()
-  })
+describe("<Home />", () => {
+    it("renders title", () => {
+        render(<Home/>)
+        expect(screen.getByText("Django and Next.js Project Template")).toBeInTheDocument()
+    })
+
+    it('renders view on github button', () => {
+        render(<Home/>)
+        expect(screen.getByRole('link', {name: "View on GitHub"})).toBeInTheDocument()
+    })
 })

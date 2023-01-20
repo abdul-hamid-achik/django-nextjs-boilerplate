@@ -19,27 +19,24 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-from .views import RegistrationView
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("health", include("health_check.urls")),
-    path("schema", get_schema_view(title="API"), name="openapi-schema"),
+    path("health/", include("health_check.urls")),
+    path(
+        "schema/",
+        get_schema_view(title="API", urlconf="api.urls", public=True),
+        name="openapi-schema",
+    ),
     path(
         "docs/",
         TemplateView.as_view(
-            template_name="docs.html", extra_context={"schema_url": "openapi-schema"}
+            template_name="docs.html",
+            extra_context={"schema_url": "openapi-schema"},
         ),
         name="docs",
     ),
-    path("auth/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    path("auth/register/", RegistrationView.as_view(), name="register"),
+    path("identity/", include("identity.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

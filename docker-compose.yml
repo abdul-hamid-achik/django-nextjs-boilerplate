@@ -45,6 +45,7 @@ services:
       NODE_ENV: development
       BACKEND_URL: http://backend:8080
       NEXTAUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_BACKEND_URL: http://localhost:8080
       NO_SECRET: secret
     ports:
       - 3000:3000

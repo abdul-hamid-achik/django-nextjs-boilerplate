@@ -61,14 +61,17 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_userforeignkey",
     "rest_framework",
+    "rest_framework.schemas",
     "health_check",
     "health_check.db",
     "rest_framework_simplejwt",
+    "corsheaders",
 ]
 
-INSTALLED_APPS += []
+INSTALLED_APPS += ["identity"]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -155,7 +158,20 @@ REST_FRAMEWORK = {  # Use Django's standard `django.contrib.auth` permissions,
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.OpenAPIRenderer",
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 12,
+    "PAGE_SIZE": 25,
 }
 APPEND_SLASH = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]

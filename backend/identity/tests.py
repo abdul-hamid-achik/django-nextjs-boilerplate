@@ -30,11 +30,11 @@ def test_docs_endpoint(client):
     assert "ReDoc" in response.content.decode("utf-8")
 
 
-@pytest.mark.it("/auth/registration endpoint works")
+@pytest.mark.it("/registration endpoint works")
 def test_register_endpoint(client, faker):
     email = faker.email()
     response = client.post(
-        reverse("register"),
+        reverse("user-list"),
         data={
             "email": email,
             "username": faker.user_name(),
@@ -47,14 +47,28 @@ def test_register_endpoint(client, faker):
     assert User.objects.filter(email=email).exists()
 
 
-@pytest.mark.it("/auth/registration endpoint fails when not providing a password")
+@pytest.mark.it("/registration endpoint fails when not providing a password")
 def test_register_endpoint_failure(client, faker):
     email = faker.email()
     response = client.post(
-        reverse("register"),
+        reverse("user-list"),
         data={"email": email, "username": faker.user_name(), "password": ""},
     )
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert "password" in response.data
     assert "This field may not be blank." in response.data["password"][0]
     assert User.objects.filter(email=email).exists() is False
+
+
+@pytest.mark.it("/user endpoint works when authenticated")
+def test_user_endpoint(get_authenticated_client, user):
+    client = get_authenticated_client(user)
+    response = client.get(reverse("user-detail", args=[user.pk]))
+
+    assert response.status_code == status.HTTP_200_OK
+
+
+@pytest.mark.it("/user endpoint fails when not authenticated")
+def test_user_endpoint_failure(client, user):
+    response = client.get(reverse("user-detail", args=[user.pk]))
+    assert response.status_code == status.HTTP_401_UNAUTHORIZED

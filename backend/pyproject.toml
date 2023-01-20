@@ -21,6 +21,7 @@ dependencies = [
     "uritemplate>=4.1.1",
     "whitenoise>=6.2.0",
     "psycopg2-binary>=2.9.5",
+    "django-cors-headers>=3.13.0",
 ]
 requires-python = ">=3.11.1"
 license = { text = "GPLv3" }
