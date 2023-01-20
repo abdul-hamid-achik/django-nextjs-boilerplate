@@ -6,7 +6,7 @@ import '@testing-library/jest-dom'
 describe('Landing page', () => {
   it('renders title', () => {
         render(<Home />)
-        const content = screen.getByAltText('Project Template')
-        expect(content).toBeInTheDocument()
+        const title = screen.getByText('Project Template')
+        expect(title).toBeInTheDocument()
     })
 })
