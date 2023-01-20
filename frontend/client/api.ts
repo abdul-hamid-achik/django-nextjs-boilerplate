@@ -67,6 +67,39 @@ export interface TokenRefresh {
 export const AuthApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createRegistration: async (body?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/auth/register/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
          * @param {TokenObtainPair} [tokenObtainPair] 
          * @param {*} [options] Override http request option.
@@ -143,6 +176,16 @@ export const AuthApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuthApiAxiosParamCreator(configuration)
     return {
         /**
+         * 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createRegistration(body?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRegistration(body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
          * @param {TokenObtainPair} [tokenObtainPair] 
          * @param {*} [options] Override http request option.
@@ -173,6 +216,15 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = AuthApiFp(configuration)
     return {
         /**
+         * 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createRegistration(body?: any, options?: any): AxiosPromise<any> {
+            return localVarFp.createRegistration(body, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
          * @param {TokenObtainPair} [tokenObtainPair] 
          * @param {*} [options] Override http request option.
@@ -200,6 +252,17 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
  * @extends {BaseAPI}
  */
 export class AuthApi extends BaseAPI {
+    /**
+     * 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public createRegistration(body?: any, options?: AxiosRequestConfig) {
+        return AuthApiFp(this.configuration).createRegistration(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
      * @param {TokenObtainPair} [tokenObtainPair] 

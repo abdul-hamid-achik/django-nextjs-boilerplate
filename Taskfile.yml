@@ -49,8 +49,8 @@ tasks:
   start:
     desc: Starts all services in docker-compose.yml
     summary: |
-        Starts all services in docker-compose.yml, including backend and frontend.
-        This is the same as running `docker compose up -d`
+      Starts all services in docker-compose.yml, including backend and frontend.
+      This is the same as running `docker compose up -d`
     deps: [ compose.build, compose.up ]
     cmds:
       - task: logs
@@ -91,7 +91,33 @@ tasks:
       - docker compose run backend python manage.py migrate
 
   test:
-        desc: Runs tests
-        cmds:
-            - cd backend && pdm test
-            - cd frontend && npm test
+    desc: Runs tests
+    cmds:
+      - cd backend && pdm test
+      - cd frontend && npm test
+
+  generate-api-client:
+    deps: [compose.up]
+    desc: Generates client code for typesafe communication with backend
+    aliases:
+      - client
+    summary:
+        Generates client code for typesafe communication with backend.
+        This is the same as running `docker compose run frontend npm run generate-client`
+        but it is much faster because it doesn't have to use docker the frontend image.
+    dir: frontend
+    cmds:
+      - npm run generate-api-client
+
+  format:
+    desc: Formats all code
+    cmds:
+      - cd backend && pdm run format
+      - cd frontend && npm run format
+
+
+  lint:
+    desc: Lints all code
+    cmds:
+      - cd backend && pdm run lint
+      - cd frontend && npm run lint

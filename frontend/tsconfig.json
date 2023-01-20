@@ -27,7 +27,6 @@
   },
   "include": [
     "next-env.d.ts",
-    "!client",
     "**/*.{ts,tsx}",
   ],
   "exclude": [

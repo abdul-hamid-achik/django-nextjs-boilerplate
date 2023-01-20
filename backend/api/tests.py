@@ -33,8 +33,14 @@ def test_docs_endpoint(client):
 @pytest.mark.it("/auth/registration endpoint works")
 def test_register_endpoint(client, faker):
     email = faker.email()
-    response = client.post(reverse("register"),
-                           data={"email": email, "username": faker.user_name(), "password": faker.password()})
+    response = client.post(
+        reverse("register"),
+        data={
+            "email": email,
+            "username": faker.user_name(),
+            "password": faker.password(),
+        },
+    )
     assert response.status_code == status.HTTP_201_CREATED
     assert "email" in response.data
     assert "username" in response.data
@@ -44,8 +50,10 @@ def test_register_endpoint(client, faker):
 @pytest.mark.it("/auth/registration endpoint fails when not providing a password")
 def test_register_endpoint_failure(client, faker):
     email = faker.email()
-    response = client.post(reverse("register"),
-                           data={"email": email, "username": faker.user_name(), "password": ""})
+    response = client.post(
+        reverse("register"),
+        data={"email": email, "username": faker.user_name(), "password": ""},
+    )
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert "password" in response.data
     assert "This field may not be blank." in response.data["password"][0]

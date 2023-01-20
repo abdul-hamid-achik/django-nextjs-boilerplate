@@ -96,5 +96,6 @@ exclude = '''
 _.env_file = ".env"
 test = "pytest"
 start = { cmd = "python manage.py runserver" }
-format = "black . --check --diff"
+format = "black ."
+lint = "black . --check --diff"
 
