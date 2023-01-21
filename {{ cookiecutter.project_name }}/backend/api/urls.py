@@ -26,7 +26,7 @@ urlpatterns = [
     path(
         "schema/",
         get_schema_view(
-            title="API", urlconf="{{ cookiecutter.project_name }}.urls", public=True
+            title="API", urlconf="api.urls", public=True
         ),
         name="openapi-schema",
     ),

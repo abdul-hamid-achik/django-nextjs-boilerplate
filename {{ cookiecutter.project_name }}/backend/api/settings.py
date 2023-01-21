@@ -85,7 +85,7 @@ MIDDLEWARE = [
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
-ROOT_URLCONF = "{{ cookiecutter.project_name }}.urls"
+ROOT_URLCONF = "api.urls"
 
 TEMPLATES = [
     {
@@ -103,7 +103,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "{{ cookiecutter.project_name }}.wsgi.application"
+WSGI_APPLICATION = "api.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
