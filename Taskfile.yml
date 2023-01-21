@@ -163,3 +163,9 @@ tasks:
     dir: backend
     cmds:
       - docker compose run --rm backend python manage.py show_urls
+
+  install:
+    desc: Installs dependencies locally if you have the toolset setup
+    cmds:
+      - cd backend && pdm install --dev
+      - cd frontend && npm install
