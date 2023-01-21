@@ -1,5 +1,6 @@
 {
-  "name": "frontend",
+  "name": "{{ cookiecutter.project_slug }}",
+  "description": "This is the frontend for {{ cookiecutter.project_slug }}",
   "version": "0.1.0",
   "private": true,
   "scripts": {

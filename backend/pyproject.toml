@@ -1,7 +1,7 @@
 [project]
-name = "api"
+name = "{{ cookiecutter.project_slug }}-backend"
 version = "1.0"
-description = "This is a project template for a django api"
+description = "This is the backend for {{ cookiecutter.project_slug }}"
 authors = [
     { name = "abdul hamid", email = "abdulachik@icloud.com" },
 ]
