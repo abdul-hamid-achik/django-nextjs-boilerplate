@@ -1,10 +1,10 @@
-# Django and Next.js Project Template
+# Django and Next.js Boilerplate
 
 I made this project template to make it easy to quickly bootstrap a full stack application following modern practices 🚀.
 
-## Generate project with cookiecutter 🍪
+## Install with cookiecutter 🍪
 
-`cookiecutter gh:sicksid/django-nextjs-project-template`
+`cookiecutter gh:sicksid/django-nextjs-boilerplate`
 
 ## Features
 - Full stack development with Django and Next.js 💻
