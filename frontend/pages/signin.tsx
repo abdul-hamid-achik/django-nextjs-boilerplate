@@ -2,6 +2,7 @@ import {useForm} from 'react-hook-form';
 import {useMutation} from '@tanstack/react-query';
 import {signIn, SignInOptions} from "next-auth/react";
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 export default function SignIn() {
     const {push} = useRouter();
@@ -10,16 +11,15 @@ export default function SignIn() {
         ...credentials,
         redirect: false,
         callbackUrl: '/'
+    }).then(async data => {
+        if (data.status !== 200) throw Error('Invalid credentials');
+        return data;
     }), {
         onSuccess: async (data) => {
-            if (data?.error) {
-                return;
-            }
             await push(data.url ? data.url : '/');
         }
     });
 
-    console.log({error, isError, errors})
     const onSubmit = (credentials) => {
         mutate(credentials);
     }
@@ -28,7 +28,10 @@ export default function SignIn() {
         <>
             <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign In</h2>
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Welcome</h2>
+                    <p className="mt-2 text-center text-md font-light">Don&apos;t have an account?
+                        <Link className="ml-2 text-center text-md text-blue-400" href={'/signup'}>Sign Up</Link>
+                    </p>
                 </div>
 
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -70,7 +73,7 @@ export default function SignIn() {
                                     type="submit"
                                     id="submit"
                                     disabled={isSubmitting}
-                                    className="w-full text-center py-2 px-4 rounded bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full text-center py-2 px-4 rounded bg-indigo-600 text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
                                     Sign In
                                 </button>

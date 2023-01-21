@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import {useSession} from "next-auth/react";
 
 export default function Home() {
+    const {data: session} = useSession();
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
             <Head>
@@ -10,6 +13,9 @@ export default function Home() {
 
             <div className="mx-auto sm:max-w-xl flex items-center justify-center flex-col">
                 <h1 className="text-3xl font-medium text-gray-900">Django and Next.js Project Template</h1>
+                {session?.user && (
+                    <p className="text-gray-700">Welcome {session?.user?.email}</p>
+                )}
                 <p className="text-gray-700 my-4">
                     The project is structured with two separate directories for the frontend and backend.
                     The backend, which is built using Django REST framework, is located in the `./backend` directory,

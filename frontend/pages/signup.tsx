@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {Configuration, IdentityApi, User} from "../client";
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 
 export default function SignUp() {
@@ -12,10 +13,7 @@ export default function SignUp() {
         const authApi = new IdentityApi(config);
         return await authApi.createUser(data)
     }, {
-        onSuccess: async (data) => {
-            if (data?.status === 201) {
-                return;
-            }
+        onSuccess: async () => {
             await push('/');
         }
     });
@@ -29,6 +27,9 @@ export default function SignUp() {
             <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Register</h2>
+                    <p className="mt-2 text-center text-md font-light">Already have an account?
+                        <Link className="ml-2 text-center text-md text-blue-400" href={'/signin'}>Sign In</Link>
+                    </p>
                 </div>
 
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -85,7 +86,7 @@ export default function SignUp() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full text-center py-2 px-4 rounded bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full text-center py-2 px-4 rounded bg-indigo-600 text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
                                     Sign Up
                                 </button>

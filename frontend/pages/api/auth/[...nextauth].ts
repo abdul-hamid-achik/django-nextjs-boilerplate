@@ -1,7 +1,7 @@
-import NextAuth, {Session, SessionStrategy, User} from "next-auth";
+import NextAuth, {Session, SessionStrategy} from "next-auth";
 import jwtDecode from "jwt-decode";
 import CredentialsProvider from "next-auth/providers/credentials";
-import {Configuration, IdentityApi,} from '../../../client';
+import {Configuration, IdentityApi, User} from '../../../client';
 
 const identityApi = new IdentityApi(new Configuration({basePath: process.env.BACKEND_URL}));
 
@@ -54,14 +54,16 @@ export const authOptions = {
 
             async authorize(credentials) {
                 try {
-                    const response = await identityApi.createTokenObtainPair(credentials);
-                    const {data} = response
-                    const token: Token = data as unknown as Token;
+                    const {data: token} = await identityApi.createTokenObtainPair(credentials);
                     const {user_id}: any =
-                        jwtDecode(token?.access as string);
+                        jwtDecode((token as Token)?.access as string);
+
+                    const {data: user} = await identityApi.retrieveUser(user_id);
+
                     return {
                         ...token,
                         id: user_id,
+                        user
                     };
                 } catch (error) {
                     console.error(error.message);
@@ -99,6 +101,7 @@ export const authOptions = {
                           token,
                           user
                       }: { session: CustomSession, user: User, token: Token }) {
+            console.log("session", session, token, user);
             session.user = user;
             session.access = token.access;
             session.refresh = token.refresh;
