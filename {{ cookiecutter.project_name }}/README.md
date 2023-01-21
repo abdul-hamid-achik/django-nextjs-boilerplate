@@ -2,10 +2,6 @@
 
 I made this project template to make it easy to quickly bootstrap a full stack application following modern practices 🚀.
 
-## Generate project with cookiecutter 🍪
-
-`cookiecutter gh:sicksid/django-nextjs-project-template`
-
 ## Features
 - Full stack development with Django and Next.js 💻
 - Authentication with next-auth.js and Django REST framework simplejwt 🔒
@@ -52,4 +48,3 @@ Optionally install [asdf](https://asdf-vm.com) to run `asdf install` and get pyt
 6. Run the frontend: `cd frontend && npm run dev`
 7. Run the backend: `cd backend && python manage.py runserver`
 8. The application should now be running at `http://localhost:3000` for the frontend and `http://localhost:8000` for the backend 🎉
-

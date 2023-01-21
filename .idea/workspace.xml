@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BlackConnectSettings" triggerOnEachSave="true" triggerOnReformat="true" />
+  <component name="ChangeListManager">
+    <list default="true" id="9b82b596-4089-4bb9-8bfa-6aaf32c0634b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cookiecutter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.actrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/actions/setup_node/action.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/actions/setup_python/action.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/backend.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.tool-versions" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taskfile.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/shared.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/conftest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/identity/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pdm.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pyproject.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pytest.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/docs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/__tests__/index.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/__tests__/signin.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/__tests__/signup.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/.openapi-generator-ignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/.openapi-generator/FILES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/.openapi-generator/VERSION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/base.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/common.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/configuration.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/git_push.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/client/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/jest.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/jest.setup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/next.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/_app.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/api/auth/[...nextauth].ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/signin.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/signup.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scripts/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/server/get-server-auth-session.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/styles/globals.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tests.shared.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2KX1yc2n5lvy81cT0iceqH5dPRs" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "18.12.1",
+    "javascript.nodejs.core.library.typings.version": "18.11.18",
+    "last_opened_file_path": "/Users/sicksid/projects/django-nextjs-project-template",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "me.lensvol.blackconnect.settings",
+    "ts.external.directory.path": "/Users/sicksid/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P/ch-0/223.8214.51/PyCharm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$/backend/identity" />
+      <recent name="$PROJECT_DIR$/frontend/pages" />
+      <recent name="$PROJECT_DIR$/frontend/client" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9b82b596-4089-4bb9-8bfa-6aaf32c0634b" name="Changes" comment="" />
+      <created>1674106369212</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674106369212</updated>
+      <workItem from="1674106374584" duration="3043000" />
+      <workItem from="1674109438868" duration="9859000" />
+      <workItem from="1674174118524" duration="4877000" />
+      <workItem from="1674180329301" duration="1630000" />
+      <workItem from="1674189605088" duration="9147000" />
+      <workItem from="1674241220889" duration="12936000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

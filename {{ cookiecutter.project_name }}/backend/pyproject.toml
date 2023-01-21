@@ -1,7 +1,7 @@
 [project]
-name = "{{ cookiecutter.project_slug }}-backend"
+name = "{{ cookiecutter.project_name }}-backend"
 version = "1.0"
-description = "This is the backend for {{ cookiecutter.project_slug }}"
+description = "This is the backend for {{ cookiecutter.project_name }}"
 authors = [
     { name = "abdul hamid", email = "abdulachik@icloud.com" },
 ]
