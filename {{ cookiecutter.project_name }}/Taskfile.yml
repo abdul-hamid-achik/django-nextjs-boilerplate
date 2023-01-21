@@ -109,13 +109,13 @@ tasks:
       - task: test.backend
 
   format.frontend:
-    desc: Formats the api client
+    desc: Formats the frontend code
     dir: frontend
     cmds:
       - npm run format
 
   format.backend:
-    desc: Formats the backend
+    desc: Formats the backend code
     dir: backend
     cmds:
       - pdm run format

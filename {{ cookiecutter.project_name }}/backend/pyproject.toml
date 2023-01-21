@@ -1,10 +1,11 @@
 [project]
-name = "api"
+name = "{{ cookiecutter.project_name }}-backend"
 version = "1.0"
-description = "This is a project template for a django api"
+description = "{{ cookiecutter.description }}"
 authors = [
-    { name = "abdul hamid", email = "abdulachik@icloud.com" },
+    { name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.email }}" },
 ]
+
 dependencies = [
     "django>=4",
     "djangorestframework>=3.14.0",

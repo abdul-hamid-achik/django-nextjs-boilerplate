@@ -1,4 +1,4 @@
-"""api URL Configuration
+"""{{ cookiecutter.project_name }} URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -25,7 +25,9 @@ urlpatterns = [
     path("health/", include("health_check.urls")),
     path(
         "schema/",
-        get_schema_view(title="API", urlconf="api.urls", public=True),
+        get_schema_view(
+            title="API", urlconf="{{ cookiecutter.project_name }}.urls", public=True
+        ),
         name="openapi-schema",
     ),
     path(

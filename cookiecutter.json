@@ -1,0 +1,10 @@
+{
+  "project_name": "django-nextjs-project-template",
+  "author": "abdul hamid",
+  "email": "abdulachik@icloud.com",
+  "description": "This is a template for a Django and Next.js project.",
+  "_copy_without_render": [
+    ".github/**",
+    "**/*.html"
+  ]
+}
