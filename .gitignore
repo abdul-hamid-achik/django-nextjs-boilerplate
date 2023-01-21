@@ -8,3 +8,4 @@ __pycache__
 static/**/*
 .env
 node_modules
+.DS_Store
