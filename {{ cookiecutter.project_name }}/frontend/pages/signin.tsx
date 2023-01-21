@@ -12,7 +12,7 @@ export default function SignIn() {
         redirect: false,
         callbackUrl: '/'
     }).then(async data => {
-        if (data.status !== 200) throw Error('Invalid credentials');
+        if (data?.status !== 200) throw Error('Invalid credentials');
         return data;
     }), {
         onSuccess: async (data) => {

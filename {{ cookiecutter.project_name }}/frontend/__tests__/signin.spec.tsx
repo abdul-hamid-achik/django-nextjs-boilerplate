@@ -7,7 +7,7 @@ import {Wrapper} from "../tests.shared";
 
 jest.mock('next-auth/react', () => {
     return {
-        signIn: jest.fn()
+        signIn: jest.fn().mockResolvedValue({status: 200}),
     }
 })
 
@@ -16,7 +16,7 @@ describe("<SignIn />", () => {
     beforeEach(() => mockRouter.setCurrentUrl("/signin"))
     it('redirects to / when user is authenticated', async () => {
         // @ts-ignore
-        (signIn as jest.MockedFunction<typeof signIn>).mockResolvedValue({redirect: '/'})
+        (signIn as jest.MockedFunction<typeof signIn>).mockResolvedValue({status: 200})
 
         render(
             <SignIn/>, {wrapper: Wrapper}
